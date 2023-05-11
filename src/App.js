@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import {IoAddOutline } from "react-icons/io5";
 
 function App() {
+  const [Item, setItem] = useState("Apple")
+  const handleInputText = (event)=>{
+    setItem(event.target.value);
+  };
+  const [ItemList, setItemList] = useState([]);
+
+  const handleAddItem = ()=>
+  {
+     setItemList((olditem)=>{
+        return [...olditem,Item];
+     });
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>ToDOList</h1>
+      <input type="text" placeholder='type here' 
+      onChange={handleInputText}
+      value={Item} />
+      <button className='btn' onClick={handleAddItem} ><IoAddOutline/></button>
+      <ul>
+        {
+          ItemList.map((itemVal)=>{
+            return <li>{itemVal}</li>;
+          })
+        }
+      </ul>
+    </>
   );
 }
 
