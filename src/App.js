@@ -1,31 +1,59 @@
 import './App.css';
 import React, { useState } from 'react';
-import {IoAddOutline } from "react-icons/io5";
+import ToDoLists from './ToDoLists';
 
 function App() {
-  const [Item, setItem] = useState("Apple")
+  const [Item, setItem] = useState("")//usestate hook is used for changing the state
   const handleInputText = (event)=>{
-    setItem(event.target.value);
+    
+    setItem(event.target.value);//taking text from input field
+    
   };
-  const [ItemList, setItemList] = useState([]);
+  const [ItemList, setItemList] = useState([]);//storing the value in a array
 
-  const handleAddItem = ()=>
-  {
-     setItemList((olditem)=>{
-        return [...olditem,Item];
-     });
+  const handleAddItem = () => {
+    if (Item.trim() === "") {
+      // If the item value is empty or only contains whitespace, return without adding the item
+      return;
+    }
+  
+    setItemList((olditem) => {
+      return [...olditem, Item];
+    });
+    setItem('');//after adding it the list the input field become empty
   };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleAddItem();
+    }
+  };
+
+  const handleDelete = (id) =>
+  {
+  
+      setItemList((olditem) => {
+        return olditem.filter((arrEle,index)=>{//this is doing flitration on the basis of logic written
+          return index!==id;
+        })
+      });
+  }
+  
   return (
     <>
-      <h1>ToDOList</h1>
-      <input type="text" placeholder='type here' 
-      onChange={handleInputText}
-      value={Item} />
-      <button className='btn' onClick={handleAddItem} ><IoAddOutline/></button>
-      <ul>
+      <h1 className='title'>To DO List</h1>
+      <div className='inputfield'><input className='ip' type="text" placeholder='Type Here' 
+      onChange={handleInputText} onKeyDown={handleKeyDown}
+      value={Item} /> <i className="addicon fa-sharp fa-solid fa-plus fa-beat-fade" onClick={handleAddItem} ></i></div>
+  
+      <ul >
         {
-          ItemList.map((itemVal)=>{
-            return <li>{itemVal}</li>;
+          ItemList.map((itemVal,index)=>{
+            return <ToDoLists 
+            text={itemVal} 
+            key={index} 
+            id={index}
+            onSelect={handleDelete}/>
           })
         }
       </ul>

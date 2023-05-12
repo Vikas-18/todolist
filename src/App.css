@@ -1,7 +1,53 @@
-.btn
-{
-  border-radius: 50px;
-}
-.btn:hover{
-  background-color: rgb(65, 220, 65);
-}
+* {
+    margin: 0;
+    padding: 0;
+  }
+  body{
+    
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+  }
+  
+  
+  .ip{
+      text-align: center;
+      box-sizing: border-box;
+      border-radius: 50px;
+  }
+  .inputfield {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  li{
+    color: white;
+  }
+  
+  
+  
+  .title {
+    color: wheat;
+     padding-top: 5px;
+    text-align: center;
+  }
+
+  
+  .addicon {
+    margin-left: 5px;
+    color: rgb(76, 246, 76);
+    
+    
+  }
+  
+  .deleteicon {
+    margin-left: 5px;
+    color: red;
+  }
+  .deleteitem{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
